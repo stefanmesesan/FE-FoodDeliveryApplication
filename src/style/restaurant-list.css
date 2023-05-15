@@ -1,0 +1,116 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    list-style: none;
+    text-decoration: none;
+}
+
+.restaurant-list-main-container {
+    width: 100vw;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.restaurant-list-nav-bar {
+    width: 100%;
+    height: 3.5rem;
+    background-color: lightcoral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.restaurant-list-nav-bar-center {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem 0 1rem;
+}
+
+.restaurant-list-nav-bar-right,
+.restaurant-list-nav-bar-left {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.restaurant-list-nav-bar-right {
+    gap: 2rem;
+}
+
+.restaurant-address-input {
+    width: 15rem;
+}
+
+.restaurant-list-search {
+    width: 25rem;
+}
+
+.nav-bar-logo {
+    font-size: 2rem;
+    font-family: var(--font-bebas);
+}
+
+.nav-bar-icon {
+    cursor: pointer;
+}
+
+.restaurant-list-nav-bar-left input {
+    border: 0;
+    outline: 0;
+}
+
+.restaurant-list-nav-bar-left input::placeholder {
+    color: lightgray;
+    font-size: 0.8rem;
+}
+
+
+.nav-bar-user-profile,
+.nav-bar-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    padding-left: 0.2rem;
+    background-color: white;
+    height: 2rem;
+    padding: 0 0.6rem;
+    border-radius: 0.5rem;
+}
+
+.nav-bar-user-profile {
+    gap: 0.25rem;
+    background-color: rgb(238, 236, 236);
+    cursor: pointer;
+}
+
+
+.restaurant-list {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restaurant-list h1 {
+    font-size: 2rem;
+    font-family: var(--font-bebas);
+    
+    font-weight: lighter;
+    
+}
+
+.restaurant-list-content {
+    width: 75%;
+    background-color: lightpink;
+}
