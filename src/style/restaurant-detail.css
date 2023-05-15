@@ -1,0 +1,129 @@
+.restaurant-detail-main-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ececec;
+}
+
+.restaurant-detail-main-container h1 {
+    font-size: 2rem;
+    font-family: var(--font-bebas);
+    font-weight: lighter;
+}
+
+.restaurant-detail-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.restaurant-detail {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.restaurant-detail img {
+    width: 70%;
+    top: -5rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    position: relative;
+}
+
+.restaurant-detail-name {
+    font-size: 3rem;
+    font-family: var(--font-bebas);
+}
+
+.restaurant-detail-info {
+    background-color: white;
+    width: 40%;
+    height: 8rem;
+    position: absolute;
+    bottom: 15rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.restaurant-contact {
+    width: 100%;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.restaurant-contact p {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.restaurant-food {
+    width: 75%;
+}
+
+.restaurant-food-title {
+    font-size: 1.8rem;
+    color: rgb(73, 69, 69);
+    letter-spacing: 2px;
+    font-family: var(--font-bebas);
+    margin-bottom: 1rem;
+}
+
+.restaurant-food-content {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.restaurant-food-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.restaurant-food-card {
+    width: 100%;
+    height: 168px;
+    background-color: white;
+    display: flex;
+    border-radius: 0.5rem;
+    font-weight: light;
+}
+
+.restaurant-food-card p {
+    font-size: 0.95rem;
+}
+
+.restaurant-food-card img {
+    max-width: 20rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.restaurant-food-card-details {
+    padding: 0.2rem 0.4rem 0.2rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.restaurant-food-card-price {
+    text-align: end;
+    color: rgb(90, 1, 1);
+}
+
+.restaurant-food-card-description {
+    color: rgb(97, 96, 96);
+    font-size: 0.8rem !important;
+    text-align: justify;
+}
