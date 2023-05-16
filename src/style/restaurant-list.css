@@ -1,10 +1,10 @@
-
 .restaurant-list-main-container {
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    background-color: #cacaca;
 }
 
 .restaurant-list {
@@ -30,6 +30,10 @@
     margin-bottom: 1rem;
 }
 
+.filter-container {
+    position: relative;
+}
+
 .restaurant-list-filter {
     height: 2rem;
     width: 10rem;
@@ -42,20 +46,33 @@
     border: 1px solid rgb(231, 230, 230);
     cursor: pointer;
     position: relative;
+    background-color: rgb(218, 216, 216);
 }
-
 
 .filter-modal {
     background-color: white;
     border: 1px solid rgb(231, 230, 230);
-    width: 20rem;
-    height: 20rem;
     position: absolute;
     top: 2rem;
     right: 0;
-    padding: 1rem;
-    overflow: scroll;
+    padding: 1rem 1.5rem;
     overflow-x: hidden;
+    border-radius: 0.2rem;
+}
+
+.rating-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.rating-stars {
+    display: flex;
+    flex-direction: row;
+}
+
+.rating-container div {
+    margin-top: 0.25rem;
 }
 
 .filter-arrow-down {

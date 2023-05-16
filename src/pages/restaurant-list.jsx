@@ -5,7 +5,7 @@ import "../style/global.css";
 import loading from "../assets/loading.gif";
 import defaultImage from "../assets/cardImage.png";
 import Navbar from "../components/navbar";
-import { AiFillStar, AiFillCaretDown } from "react-icons/ai";
+import { AiOutlineStar, AiFillStar, AiFillCaretDown } from "react-icons/ai";
 import { VscSettings } from "react-icons/vsc";
 
 {
@@ -16,6 +16,8 @@ const RestaurantList = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [restaurants, setRestaurants] = useState([]);
     const [isActive, setIsActive] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [star, setStar] = useState(0);
 
     useEffect(() => {
         setIsLoading(true);
@@ -27,11 +29,16 @@ const RestaurantList = () => {
 
     function handleFilterClick() {
         setIsActive(!isActive);
+        setStar(0);
     }
 
-    function handleFilterClickClose() {
-        setIsActive(false);
-    }
+    const handleStarHover = (index) => {
+        setRating(index + 1);
+    };
+
+    const handleStarClick = (index) => {
+        setStar(index + 1);
+    };
 
     return (
         <div className="restaurant-list-main-container">
@@ -41,17 +48,48 @@ const RestaurantList = () => {
             <div className="restaurant-list">
                 <div className="restaurant-list-title">
                     <h1>Restaurant list</h1>
-                    <div
-                        onClick={handleFilterClick}
-                        className="restaurant-list-filter"
-                    >
+                    <div className="filter-container">
+                        <div
+                            onClick={handleFilterClick}
+                            className="restaurant-list-filter"
+                        >
+                            <VscSettings />
+                            <p>Filterează</p>
+                            <AiFillCaretDown className="filter-arrow-down" />
+                        </div>
                         <div
                             className="filter-modal"
                             style={{ display: isActive ? "block" : "none" }}
-                        ></div>
-                        <VscSettings />
-                        <p>Filterează</p>
-                        <AiFillCaretDown className="filter-arrow-down" />
+                        >
+                            <div className="rating-container">
+                                <p>Rating</p>
+                                {/* <p>{star}</p> */}
+                                <div className="rating-stars">
+                                    {Array.from({ length: 5 }).map(
+                                        (_, index) => (
+                                            <span
+                                                key={index}
+                                                onMouseEnter={() =>
+                                                    handleStarHover(index)
+                                                }
+                                                onMouseLeave={() =>
+                                                    setRating(0)
+                                                }
+                                                onClick={() =>
+                                                    handleStarClick(index)
+                                                }
+                                            >
+                                                {index < star ? (
+                                                    <AiFillStar />
+                                                ) : (
+                                                    <AiOutlineStar />
+                                                )}
+                                            </span>
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="restaurant-list-content">
@@ -79,7 +117,7 @@ const RestaurantList = () => {
                                             </a>
                                             {/* <p>{rating} <AiOutlineStar/></p> */}
                                             <p>
-                                                4 <AiFillStar />
+                                                reviews. <AiFillStar />
                                             </p>
                                         </div>
                                     </div>

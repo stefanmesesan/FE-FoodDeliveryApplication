@@ -16,6 +16,12 @@
     letter-spacing: 1px;
 }
 
+body {
+    background-color: #cacaca;
+    padding-bottom: 10rem;
+    overflow-x: hidden;
+}
+
 a {
     color: black !important;
 }

@@ -1,17 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as client from "../clients/restaurant";
-import Navbar from "../components/navbar";
-import "../style/restaurant-detail.css";
-import loading from "../assets/loading.gif";
-import defaultImage from "../assets/cardImage.png";
-import { BsTelephone } from "react-icons/bs";
-import { GrMap } from "react-icons/gr";
-import pizza from "../assets/pizza.jpg";
 
-const RestaurantDetail = () => {
+const MenuItemDetail = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [restaurant, setRestaurant] = useState({});
+    const [menuItem, setMenuItem] = useState({});
 
     const { id } = useParams();
 
@@ -34,16 +26,16 @@ const RestaurantDetail = () => {
                         <img src={defaultImage} alt="image" />
                         <div className="restaurant-detail-info">
                             <p className="restaurant-detail-name">
-                                {restaurant.name}
+                                {menuItem.name}
                             </p>
                             <div className="restaurant-contact">
                                 <p>
                                     <GrMap />
-                                    {restaurant.address}
+                                    {menuItem.description}
                                 </p>
                                 <p>
                                     <BsTelephone />
-                                    {restaurant.phoneNumber}
+                                    {menuItem.price}
                                 </p>
                             </div>
                         </div>
@@ -144,5 +136,4 @@ const RestaurantDetail = () => {
         </div>
     );
 };
-
-export default RestaurantDetail;
+export default MenuItemDetail;
