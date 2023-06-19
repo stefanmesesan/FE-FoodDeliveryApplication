@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RestaurantList from "./pages/restaurant-list";
+import RestaurantSearch from "./pages/restaurant-search";
 import RestaurantDetail from "./pages/restaurant-detail";
 import RestaurantCreate from "./pages/restaurant-create";
 import Register from "./pages/register-form";
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: "/restaurants",
         element: <RestaurantList />,
+    },
+    {
+        path: "/restaurants/search",
+        element: <RestaurantSearch />,
     },
     {
         path: "/restaurants/:id",

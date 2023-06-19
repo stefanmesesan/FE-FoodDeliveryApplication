@@ -5,6 +5,7 @@ import "../style/global.css";
 import loading from "../assets/loading.gif";
 import defaultImage from "../assets/cardImage.png";
 import Navbar from "../components/navbar";
+import { useSearchParams } from "react-router-dom";
 import { AiOutlineStar, AiFillStar, AiFillCaretDown } from "react-icons/ai";
 import { VscSettings } from "react-icons/vsc";
 
@@ -12,20 +13,23 @@ import { VscSettings } from "react-icons/vsc";
     /* npm install react-icons */
 }
 
-const RestaurantList = () => {
+const RestaurantSearch = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [restaurants, setRestaurants] = useState([]);
     const [isActive, setIsActive] = useState(false);
     const [rating, setRating] = useState(0);
     const [star, setStar] = useState(0);
 
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get("q");
+
     useEffect(() => {
         setIsLoading(true);
-        client.getAll().then((response) => {
+        client.search(query).then((response) => {
             setRestaurants(response.data);
             setIsLoading(false);
         });
-    }, []);
+    }, [query]);
 
     function handleFilterClick() {
         setIsActive(!isActive);
@@ -43,7 +47,7 @@ const RestaurantList = () => {
     return (
         <div className="restaurant-list-main-container">
             {/* navbar */}
-            <Navbar/>
+            <Navbar />
             {/* navbar */}
             <div className="restaurant-list">
                 <div className="restaurant-list-title">
@@ -132,4 +136,4 @@ const RestaurantList = () => {
     );
 };
 
-export default RestaurantList;
+export default RestaurantSearch;

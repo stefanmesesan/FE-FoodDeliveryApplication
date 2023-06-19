@@ -10,6 +10,14 @@ export const getAll = () => {
   });
 };
 
+export const search = (searchTerm) => {
+  return axios.get(BASE_URL + "/restaurants/search?name=" + searchTerm,  {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
+};
+
 export const getById = (id) => {
   return axios.get(BASE_URL + "/restaurants/" + id, {
     headers: {
