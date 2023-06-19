@@ -7,7 +7,6 @@ export default function RegisterRestaurantOperator() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [address, setAddress] = useState("");
 
     const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ export default function RegisterRestaurantOperator() {
             alert("Please fill in all fields");
             return;
         }
-        navigate("/login");
+        navigate("/restaurants");
     };
     return (
         <div className="user-register-container">
@@ -71,14 +70,6 @@ export default function RegisterRestaurantOperator() {
                                 type="tel"
                                 placeholder="ex: 071234567"
                                 onChange={(e) => setPhoneNumber(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <p>address</p>
-                            <input
-                                type="text"
-                                placeholder="str. Toamnei, nr. 12, crt. Faget"
-                                onChange={(e) => setAddress(e.target.value)}
                             />
                         </div>
                     </div>

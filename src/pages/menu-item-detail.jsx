@@ -10,7 +10,7 @@ const MenuItemDetail = () => {
     useEffect(() => {
         setIsLoading(true);
         client.getById(id).then((response) => {
-            setRestaurant(response.data);
+            setMenuItem(response.data);
             setIsLoading(false);
         });
     }, [id]);
@@ -35,6 +35,7 @@ const MenuItemDetail = () => {
                                 </p>
                                 <p>
                                     <BsTelephone />
+                                    {restaurant.phoneNumber}
                                     {menuItem.price}
                                 </p>
                             </div>

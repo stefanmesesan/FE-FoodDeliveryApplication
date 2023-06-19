@@ -125,3 +125,13 @@
     font-size: 0.8rem !important;
     text-align: justify;
 }
+
+.menuItemModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    background-color: #fff;
+    padding: 20px;
+    z-index: 1;
+}

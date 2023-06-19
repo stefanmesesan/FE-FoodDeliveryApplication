@@ -1,0 +1,28 @@
+.comanda-plasata-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.comanda-plasata-container h1 {
+    font-size: 3rem;
+    color: rgb(32, 134, 32);
+}
+
+.check {
+    font-size: 7rem;
+    color: rgb(32, 134, 32);
+}
+
+.previous-btn {
+    width: 8rem;
+    height: 2.5rem;
+    border: 0;
+    outline: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}

@@ -3,13 +3,25 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080";
 
 export const getAll = () => {
-  return axios.get(BASE_URL + "/restaurantController");
+  return axios.get(BASE_URL + "/restaurants",  {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
 };
 
 export const getById = (id) => {
-  return axios.get(BASE_URL + "/restaurantController/" + id);
+  return axios.get(BASE_URL + "/restaurants/" + id, {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
 };
 
 export const create = (newRestaurant) => {
-  return axios.post(BASE_URL + "/restaurantController", newRestaurant);
+  return axios.post(BASE_URL + "/restaurants", newRestaurant, {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
 };

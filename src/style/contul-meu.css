@@ -1,0 +1,60 @@
+.contul-meu-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contul-meu-content {
+    width: 75%;
+    padding-top: 5rem;
+}
+
+.contul-meu-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 3rem;
+    align-items: center;
+}
+
+.info-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contul-meu-item {
+    display: flex;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+}
+
+.contul-meu-email {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.contul-meu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.contul-meu-welcome {
+    display: flex;
+    flex-direction: column;
+}
+
+.email {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+}

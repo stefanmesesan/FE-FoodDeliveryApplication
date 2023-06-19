@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as accountClient from "../clients/account";
 
 export default function RegisterCustomer() {
     const [firstName, setFirstName] = useState("");
@@ -25,7 +26,21 @@ export default function RegisterCustomer() {
             alert("Please fill in all fields");
             return;
         }
-        navigate("/login");
+
+        accountClient
+            .register("CUSTOMER", {
+                firstName,
+                lastName,
+                email,
+                password,
+                phoneNumber,
+                address,
+            })
+            .then((response) => {
+                localStorage.setItem("accessToken", response.data.access_token);
+                localStorage.setItem("role", response.data.role);
+                navigate("/restaurants");
+            });
     };
     return (
         <div className="user-register-container">

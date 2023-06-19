@@ -1,3 +1,7 @@
+const RestaurantModify = () => {
+    return <h1>Restaurant modify</h1>;
+};
+
 import "../style/contul-meu.css";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
@@ -7,7 +11,7 @@ import CosulMeu from "../components/cosul-meu";
 import Logo from "../components/logo";
 import Home from "../components/home";
 
-export default function RestaurantCreate() {
+export default function RestaurantModify() {
     return (
         <div className="restaurant-create-container">
             <div className="restaurant-create-navbar">

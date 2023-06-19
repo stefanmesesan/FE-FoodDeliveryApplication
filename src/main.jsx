@@ -9,10 +9,13 @@ import RegisterCustomer from "./pages/register-customer";
 import RegisterDeliveryGuy from "./pages/register-delivery-guy";
 import RegisterRestaurantOperator from "./pages/register-restaurant-operator";
 import Login from "./pages/login";
+import ContulMeu from "./pages/contul-meu";
+import CosulMeu from "./pages/cosul-meu";
+import ComandaPlasata from "./pages/comanda-plasata";
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: "/restaurants",
         element: <RestaurantList />,
     },
     {
@@ -44,9 +47,21 @@ const router = createBrowserRouter([
         element: <Login />,
     },
     {
-      path: "/restaurants/:id/:menuItemId",
-      element: <Login />,
-  },
+        path: "/restaurants/:id/:menuItemId",
+        element: <Login />,
+    },
+    {
+        path: "/contulMeu",
+        element: <ContulMeu />,
+    },
+    {
+        path: "/cos",
+        element: <CosulMeu />,
+    },
+    {
+        path: "/comandaPlasata",
+        element: <ComandaPlasata />,
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
