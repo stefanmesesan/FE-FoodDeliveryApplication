@@ -13,6 +13,9 @@ export default function Navbar() {
                     <SearchBar />
                 </div>
                 <div className="restaurant-list-nav-bar-right">
+                    <a href={"/comenzileMele"}>
+                        <button className="comenzi-btn">Comenzile mele</button>
+                    </a>
                     <ContulMeu />
                     <CosulMeu />
                 </div>

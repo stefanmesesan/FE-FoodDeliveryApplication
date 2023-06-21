@@ -27,9 +27,7 @@ const RestaurantList = () => {
 
     return (
         <div className="order-list-main-container">
-            {/* navbar */}
             <Navbar />
-            {/* navbar */}
             <div className="order-list">
                 <div className="order-list-title">
                     <h1>Order list</h1>

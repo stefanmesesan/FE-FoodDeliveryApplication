@@ -5,18 +5,14 @@ import { AiTwotonePhone } from "react-icons/ai";
 import { BiPencil } from "react-icons/bi";
 import { AiFillLock } from "react-icons/ai";
 import { FaHamburger } from "react-icons/fa";
-import CosulMeu from "../components/cosul-meu";
+import Navbar from "../components/navbar";
 import Logo from "../components/logo";
 import Home from "../components/home";
 
 export default function ContulMeu() {
     return (
         <div className="contul-meu-container">
-            <div className="cos-navbar">
-                <Logo />
-                <Home />
-                <CosulMeu />
-            </div>
+            <Navbar />
             <div className="contul-meu-content">
                 <div className="contul-meu-header">
                     <div className="contul-meu-welcome">

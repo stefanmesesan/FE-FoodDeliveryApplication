@@ -9,16 +9,9 @@ import { useSearchParams } from "react-router-dom";
 import { AiOutlineStar, AiFillStar, AiFillCaretDown } from "react-icons/ai";
 import { VscSettings } from "react-icons/vsc";
 
-{
-    /* npm install react-icons */
-}
-
 const RestaurantSearch = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [restaurants, setRestaurants] = useState([]);
-    const [isActive, setIsActive] = useState(false);
-    const [rating, setRating] = useState(0);
-    const [star, setStar] = useState(0);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get("q");
@@ -31,70 +24,12 @@ const RestaurantSearch = () => {
         });
     }, [query]);
 
-    function handleFilterClick() {
-        setIsActive(!isActive);
-        setStar(0);
-    }
-
-    const handleStarHover = (index) => {
-        setRating(index + 1);
-    };
-
-    const handleStarClick = (index) => {
-        setStar(index + 1);
-    };
-
     return (
         <div className="restaurant-list-main-container">
-            {/* navbar */}
             <Navbar />
-            {/* navbar */}
             <div className="restaurant-list">
                 <div className="restaurant-list-title">
                     <h1>Restaurant list</h1>
-                    <div className="filter-container">
-                        <div
-                            onClick={handleFilterClick}
-                            className="restaurant-list-filter"
-                        >
-                            <VscSettings />
-                            <p>Filterează</p>
-                            <AiFillCaretDown className="filter-arrow-down" />
-                        </div>
-                        <div
-                            className="filter-modal"
-                            style={{ display: isActive ? "block" : "none" }}
-                        >
-                            <div className="rating-container">
-                                <p>Rating</p>
-                                {/* <p>{star}</p> */}
-                                <div className="rating-stars">
-                                    {Array.from({ length: 5 }).map(
-                                        (_, index) => (
-                                            <span
-                                                key={index}
-                                                onMouseEnter={() =>
-                                                    handleStarHover(index)
-                                                }
-                                                onMouseLeave={() =>
-                                                    setRating(0)
-                                                }
-                                                onClick={() =>
-                                                    handleStarClick(index)
-                                                }
-                                            >
-                                                {index < star ? (
-                                                    <AiFillStar />
-                                                ) : (
-                                                    <AiOutlineStar />
-                                                )}
-                                            </span>
-                                        )
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div className="restaurant-list-content">
                     {isLoading ? (
@@ -117,7 +52,9 @@ const RestaurantSearch = () => {
                                             <a
                                                 href={`/restaurants/${restaurant.id}`}
                                             >
-                                                {restaurant.name}
+                                                <p className="restaurant-name">
+                                                    {restaurant.name}
+                                                </p>
                                             </a>
                                             {/* <p>{rating} <AiOutlineStar/></p> */}
                                             <p>

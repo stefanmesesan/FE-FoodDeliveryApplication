@@ -6,6 +6,9 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .restaurant-list-nav-bar-center {
@@ -81,4 +84,21 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.restaurant-list-search {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.comenzi-btn {
+    gap: 0.25rem;
+    background-color: rgb(238, 236, 236);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 2rem;
+    padding: 0 0.6rem;
+    border-radius: 0.5rem;
+    border: 0;
 }

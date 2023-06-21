@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RestaurantList from "./pages/restaurant-list";
+import RestaurantCreate from "./pages/restaurant-create";
 import RestaurantSearch from "./pages/restaurant-search";
 import RestaurantDetail from "./pages/restaurant-detail";
-import RestaurantCreate from "./pages/restaurant-create";
 import Register from "./pages/register-form";
 import RegisterCustomer from "./pages/register-customer";
 import RegisterDeliveryGuy from "./pages/register-delivery-guy";
@@ -13,6 +13,7 @@ import Login from "./pages/login";
 import ContulMeu from "./pages/contul-meu";
 import CosulMeu from "./pages/cosul-meu";
 import ComandaPlasata from "./pages/comanda-plasata";
+import ComenzileMele from "./pages/comenzile-mele";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     {
         path: "/restaurants/create",
         element: <RestaurantCreate />,
+    },
+    {
+        path: "/restaurants/update/:id",
+        element: <RestaurantModify />,
     },
     {
         path: "/register",
@@ -53,7 +58,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/restaurants/:id/:menuItemId",
-        element: <Login />,
+        element: <MenuItem />,
     },
     {
         path: "/contulMeu",
@@ -66,6 +71,10 @@ const router = createBrowserRouter([
     {
         path: "/comandaPlasata",
         element: <ComandaPlasata />,
+    },
+    {
+        path: "/comenzileMele",
+        element: <ComenzileMele />,
     },
 ]);
 

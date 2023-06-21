@@ -13,11 +13,11 @@ export default function SearchBar() {
         navigate("/restaurants/search?q=" + query);
     };
 
-    const handleKeyDown = event => {
-        if (event.key === 'Enter') {
-            handleSearch()
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            handleSearch();
         }
-    }
+    };
 
     return (
         <div className="nav-bar-input">

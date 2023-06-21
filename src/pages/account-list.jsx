@@ -48,85 +48,38 @@ const RestaurantList = () => {
             <div className="restaurant-list">
                 <div className="restaurant-list-title">
                     <h1>Restaurant list</h1>
-                    <div className="filter-container">
-                        <div
-                            onClick={handleFilterClick}
-                            className="restaurant-list-filter"
-                        >
-                            <VscSettings />
-                            <p>Filterează</p>
-                            <AiFillCaretDown className="filter-arrow-down" />
-                        </div>
-                        <div
-                            className="filter-modal"
-                            style={{ display: isActive ? "block" : "none" }}
-                        >
-                            <div className="rating-container">
-                                <p>Rating</p>
-                                {/* <p>{star}</p> */}
-                                <div className="rating-stars">
-                                    {Array.from({ length: 5 }).map(
-                                        (_, index) => (
-                                            <span
-                                                key={index}
-                                                onMouseEnter={() =>
-                                                    handleStarHover(index)
-                                                }
-                                                onMouseLeave={() =>
-                                                    setRating(0)
-                                                }
-                                                onClick={() =>
-                                                    handleStarClick(index)
-                                                }
-                                            >
-                                                {index < star ? (
-                                                    <AiFillStar />
-                                                ) : (
-                                                    <AiOutlineStar />
-                                                )}
-                                            </span>
-                                        )
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div className="restaurant-list-content">
-                    {isLoading ? (
-                        <img src={loading} alt="Loading..." />
-                    ) : (
-                        <div className="restaurant-cards">
-                            {restaurants.map((restaurant) => (
-                                <li key={restaurant.id}>
-                                    <div className="restaurant-card">
+            </div>
+            <div className="restaurant-list-content">
+                {isLoading ? (
+                    <img src={loading} alt="Loading..." />
+                ) : (
+                    <div className="restaurant-cards">
+                        {restaurants.map((restaurant) => (
+                            <li key={restaurant.id}>
+                                <div className="restaurant-card">
+                                    <a
+                                        href={`/restaurants/${restaurant.id}`}
+                                        className="restaurant-card-image"
+                                    >
+                                        <img src={defaultImage} alt="image" />
+                                    </a>
+                                    <div className="restaurant-card-title-rating">
                                         <a
                                             href={`/restaurants/${restaurant.id}`}
-                                            className="restaurant-card-image"
                                         >
-                                            <img
-                                                src={defaultImage}
-                                                alt="image"
-                                            />
+                                            {restaurant.name}
                                         </a>
-                                        <div className="restaurant-card-title-rating">
-                                            <a
-                                                href={`/restaurants/${restaurant.id}`}
-                                            >
-                                                {restaurant.name}
-                                            </a>
-                                            {/* <p>{rating} <AiOutlineStar/></p> */}
-                                            <p>
-                                                {restaurant.rating}{" "}
-                                                <AiFillStar />
-                                            </p>
-                                        </div>
+                                        {/* <p>{rating} <AiOutlineStar/></p> */}
+                                        <p>
+                                            {restaurant.rating} <AiFillStar />
+                                        </p>
                                     </div>
-                                </li>
-                            ))}
-                        </div>
-                    )}
-                </div>
+                                </div>
+                            </li>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );

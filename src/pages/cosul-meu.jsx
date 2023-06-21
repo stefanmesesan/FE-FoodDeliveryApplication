@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../style/cos.css";
 import { MdDelete } from "react-icons/md";
-import ContulMeu from "../components/contul-meu";
+import Navbar from "../components/navbar";
 import Home from "../components/home";
 import Logo from "../components/logo";
 
@@ -20,9 +20,7 @@ export default function Cos() {
     return (
         <div className="cos-container">
             <div className="cos-navbar">
-                <Logo />
-                <Home />
-                <ContulMeu />
+                <Navbar />
             </div>
             <div className="cos-content">
                 <div className="cos-header">

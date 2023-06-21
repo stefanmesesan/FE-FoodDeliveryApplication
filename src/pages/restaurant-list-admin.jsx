@@ -5,8 +5,8 @@ import "../style/global.css";
 import loading from "../assets/loading.gif";
 import defaultImage from "../assets/cardImage.png";
 import Navbar from "../components/navbar";
-import { AiOutlineStar, AiFillStar, AiFillCaretDown } from "react-icons/ai";
-import { VscSettings } from "react-icons/vsc";
+import { AiFillStar } from "react-icons/ai";
+import { BiTrash } from "react-icons/bi";
 
 const RestaurantList = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +20,21 @@ const RestaurantList = () => {
         });
     }, []);
 
+    const handleDeleteRestaurant = (id) => {
+        setIsLoading(true);
+        client
+            .deleteRestaurant(id)
+            .then(() => {
+                // Ștergere reușită - puteți adăuga aici orice acțiuni suplimentare
+                client.getAll(); // Reîncărcăm lista de restaurante după ștergere
+            })
+            .catch((error) => {
+                console.error("Error deleting restaurant:", error);
+                // Tratați eroarea în mod corespunzător
+                setIsLoading(false);
+            });
+    };
+
     return (
         <div className="restaurant-list-main-container">
             {/* navbar */}
@@ -27,7 +42,7 @@ const RestaurantList = () => {
             {/* navbar */}
             <div className="restaurant-list">
                 <div className="restaurant-list-title">
-                    <h1>Restaurant list</h1>
+                    <h1>Restaurant list</h1>s
                 </div>
                 <div className="restaurant-list-content">
                     {isLoading ? (
@@ -59,6 +74,15 @@ const RestaurantList = () => {
                                                 <AiFillStar />
                                             </p>
                                         </div>
+                                        <button
+                                            onClick={() =>
+                                                handleDeleteRestaurant(
+                                                    restaurant.id
+                                                )
+                                            }
+                                        >
+                                            <BiTrash />
+                                        </button>
                                     </div>
                                 </li>
                             ))}

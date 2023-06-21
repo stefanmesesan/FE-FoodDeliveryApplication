@@ -33,3 +33,20 @@ export const create = (newRestaurant) => {
     }
   });
 };
+
+export const deleteRestaurant = (id) => {
+  return axios.delete(BASE_URL + "/restaurants/" + id, {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
+}
+
+export const updateRestaurant = (restaurant, newRestaurant) => {
+  return axios.put(BASE_URL + "/restaurants/" + restaurant.id, newRestaurant, {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+      }
+  }
+  )
+}
