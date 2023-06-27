@@ -4,7 +4,7 @@ import "../style/restaurant-list.css";
 import "../style/global.css";
 import loading from "../assets/loading.gif";
 import defaultImage from "../assets/cardImage.png";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar-customer";
 import { AiFillStar } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 
@@ -14,19 +14,24 @@ const RestaurantList = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        client.getAll().then((response) => {
+        client.getAllForAdmin().then((response) => {
             setRestaurants(response.data);
             setIsLoading(false);
         });
     }, []);
 
     const handleDeleteRestaurant = (id) => {
+        const answer = window.confirm("Are you sure you want to delete?");
+        if (answer === false) return;
+
         setIsLoading(true);
         client
             .deleteRestaurant(id)
             .then(() => {
-                // Ștergere reușită - puteți adăuga aici orice acțiuni suplimentare
-                client.getAll(); // Reîncărcăm lista de restaurante după ștergere
+                client.getAllForAdmin().then((response) => {
+                    setRestaurants(response.data);
+                    setIsLoading(false);
+                });
             })
             .catch((error) => {
                 console.error("Error deleting restaurant:", error);
@@ -42,7 +47,7 @@ const RestaurantList = () => {
             {/* navbar */}
             <div className="restaurant-list">
                 <div className="restaurant-list-title">
-                    <h1>Restaurant list</h1>s
+                    <h1>Restaurant list</h1>
                 </div>
                 <div className="restaurant-list-content">
                     {isLoading ? (

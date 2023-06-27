@@ -10,6 +10,14 @@ export const getAll = () => {
   });
 };
 
+export const getAllForAdmin = () => {
+  return axios.get(BASE_URL + "/restaurants/admin",  {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
+};
+
 export const search = (searchTerm) => {
   return axios.get(BASE_URL + "/restaurants/search?name=" + searchTerm,  {
     headers: {
@@ -20,6 +28,14 @@ export const search = (searchTerm) => {
 
 export const getById = (id) => {
   return axios.get(BASE_URL + "/restaurants/" + id, {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
+};
+
+export const getMyRestaurant = () => {
+  return axios.get(BASE_URL + "/restaurants/myRestaurant", {
     headers: {
     'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
     }
@@ -42,11 +58,10 @@ export const deleteRestaurant = (id) => {
   });
 }
 
-export const updateRestaurant = (restaurant, newRestaurant) => {
-  return axios.put(BASE_URL + "/restaurants/" + restaurant.id, newRestaurant, {
+export const updateRestaurant = (id, newRestaurant) => {
+  return axios.put(BASE_URL + "/restaurants/" + id, newRestaurant, {
     headers: {
       'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
       }
-  }
-  )
+  });
 }

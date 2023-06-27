@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../style/cos.css";
 import { MdDelete } from "react-icons/md";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar-customer";
 import Home from "../components/home";
 import Logo from "../components/logo";
 

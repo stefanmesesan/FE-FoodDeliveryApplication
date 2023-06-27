@@ -24,8 +24,14 @@ export default function Login() {
             .then((response) => {
                 localStorage.setItem("accessToken", response.data.access_token);
                 localStorage.setItem("role", response.data.role);
-
-                if (response.data.role === "CUSTOMER" || response.data.role === "ADMIN") navigate("/restaurants");
+                const role = localStorage.getItem("role");
+                if (role === "CUSTOMER") navigate("/restaurants");
+                else if (role === "ADMIN") navigate("/restaurants/admin");
+                else if (role === "RESTAURANT_OPERATOR")
+                    navigate("/restaurants/myRestaurant");
+                else if (role === "DELIVERY_GUY")
+                    navigate("/comenzi/comenziDisponibile");
+                else navigate("/restaurants");
             });
     };
     return (

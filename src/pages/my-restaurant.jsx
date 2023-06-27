@@ -8,13 +8,13 @@ import Navbar from "../components/navbar-customer";
 import { AiOutlineStar, AiFillStar, AiFillCaretDown } from "react-icons/ai";
 import { VscSettings } from "react-icons/vsc";
 
-const RestaurantList = () => {
+const MyRestaurant = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [restaurants, setRestaurants] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
-        client.getAll().then((response) => {
+        client.getMyRestaurant().then((response) => {
             setRestaurants(response.data);
             setIsLoading(false);
         });
@@ -27,7 +27,7 @@ const RestaurantList = () => {
             {/* navbar */}
             <div className="restaurant-list">
                 <div className="restaurant-list-title">
-                    <h1>Restaurant list</h1>
+                    <h1>My Restaurant</h1>
                 </div>
                 <div className="restaurant-list-content">
                     {isLoading ? (
@@ -70,4 +70,4 @@ const RestaurantList = () => {
     );
 };
 
-export default RestaurantList;
+export default MyRestaurant;

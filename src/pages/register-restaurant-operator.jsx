@@ -18,13 +18,12 @@ export default function RegisterRestaurantOperator() {
             lastName.trim() === "" ||
             email.trim() === "" ||
             password.trim() === "" ||
-            phoneNumber.trim() === "" ||
-            address.trim() === ""
+            phoneNumber.trim() === ""
         ) {
             alert("Please fill in all fields");
             return;
         }
-        navigate("/restaurants");
+        navigate("/myRestaurant");
     };
     return (
         <div className="user-register-container">

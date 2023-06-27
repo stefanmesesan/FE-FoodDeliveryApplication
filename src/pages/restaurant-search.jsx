@@ -4,7 +4,7 @@ import "../style/restaurant-list.css";
 import "../style/global.css";
 import loading from "../assets/loading.gif";
 import defaultImage from "../assets/cardImage.png";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar-customer";
 import { useSearchParams } from "react-router-dom";
 import { AiOutlineStar, AiFillStar, AiFillCaretDown } from "react-icons/ai";
 import { VscSettings } from "react-icons/vsc";

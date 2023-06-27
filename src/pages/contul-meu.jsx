@@ -5,7 +5,7 @@ import { AiTwotonePhone } from "react-icons/ai";
 import { BiPencil } from "react-icons/bi";
 import { AiFillLock } from "react-icons/ai";
 import { FaHamburger } from "react-icons/fa";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar-customer";
 import Logo from "../components/logo";
 import Home from "../components/home";
 
@@ -37,21 +37,18 @@ export default function ContulMeu() {
                             <MdLocationOn />
                             <p>str. toamnei nr 22</p>
                         </div>
-                        <BiPencil />
                     </div>
                     <div className="contul-meu-item contul-meu-phone-number">
                         <div className="info-icon">
                             <AiTwotonePhone />
                             <p>0748914666</p>
                         </div>
-                        <BiPencil />
                     </div>
                     <div className="contul-meu-item contul-meu-change-password">
                         <div className="info-icon">
                             <AiFillLock />
                             <p>Schimba parola</p>
                         </div>
-                        <BiPencil />
                     </div>
                     <div className="contul-meu-item contul-meu-comenzile-mele">
                         <div className="info-icon">

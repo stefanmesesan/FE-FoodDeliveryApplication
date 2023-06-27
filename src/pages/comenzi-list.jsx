@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as client from "../clients/restaurant";
+import * as client from "../clients/users.js";
 import "../style/restaurant-list.css";
 import "../style/global.css";
 import loading from "../assets/loading.gif";
@@ -12,61 +12,43 @@ import { VscSettings } from "react-icons/vsc";
     /* npm install react-icons */
 }
 
-const RestaurantList = () => {
+const OrderList = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [orders, setOrders] = useState([]);
-    const [isActive, setIsActive] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
-        client.getAllOrders().then((response) => {
+        client.getAll().then((response) => {
             setOrders(response.data);
             setIsLoading(false);
         });
     }, []);
 
     return (
-        <div className="order-list-main-container">
+        <div className="accounts-list-main-container">
             <Navbar />
-            <div className="order-list">
-                <div className="order-list-title">
-                    <h1>Order list</h1>
+            <div className="accounts-list">
+                <div className="accounts-list-title">
+                    <h1>Orders list</h1>
                 </div>
-                <div className="order-list-content">
-                    {isLoading ? (
-                        <img src={loading} alt="Loading..." />
-                    ) : (
-                        <div className="order-cards">
-                            {orders.map((order) => (
-                                <li key={order.id}>
-                                    <div className="order-card">
-                                        <a
-                                            href={`/restaurants/${restaurant.id}`}
-                                            className="restaurant-card-image"
-                                        >
-                                            <img
-                                                src={defaultImage}
-                                                alt="image"
-                                            />
-                                        </a>
-                                        <div className="restaurant-card-title-rating">
-                                            <a
-                                                href={`/restaurants/${order.id}`}
-                                            >
-                                                {order.name}
-                                            </a>
-                                            {/* <p>{rating} <AiOutlineStar/></p> */}
-                                            <p>
-                                                {restaurant.rating}{" "}
-                                                <AiFillStar />
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </div>
-                    )}
-                </div>
+            </div>
+            <div className="accounts-list-content">
+                {isLoading ? (
+                    <img src={loading} alt="Loading..." />
+                ) : (
+                    <div className="accounts-cards">
+                        {orders.map((order) => (
+                            <li key={order.id}>
+                                <div className="accounts-card">
+                                    <img src={defaultImage} alt="image" />
+                                    <p>{order.status}</p>
+                                    <p>{order.totalPrice}</p>
+                                    <p>{order.createdAt}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );

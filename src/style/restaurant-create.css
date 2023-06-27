@@ -34,12 +34,6 @@
     padding: 0.1rem;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
 .info-icon input {
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }

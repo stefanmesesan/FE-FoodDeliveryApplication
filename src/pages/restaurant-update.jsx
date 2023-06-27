@@ -1,19 +1,28 @@
 import "../style/restaurant-create.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { AiTwotonePhone } from "react-icons/ai";
 import * as restaurantClient from "../clients/restaurant";
 import Navbar from "../components/navbar-customer";
 
-export default function RestaurantCreate() {
+export default function RestaurantUpdate() {
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const navigate = useNavigate();
+    const { id } = useParams();
 
-    const createRestaurant = async () => {
+    useEffect(() => {
+        restaurantClient.getById(id).then((response) => {
+            setName(response.data.name);
+            setAddress(response.data.address);
+            setPhoneNumber(response.data.phoneNumber);
+        });
+    }, [id]);
+
+    const updateRestaurant = async () => {
         if (
             name.trim() === "" ||
             address.trim() === "" ||
@@ -22,21 +31,20 @@ export default function RestaurantCreate() {
             alert("Please fill in all fields before submitting.");
             return;
         }
-        const response = await restaurantClient.create({
+        await restaurantClient.updateRestaurant(id, {
             name,
             address,
             phoneNumber,
         });
-        const restaurantId = response.data.id;
 
-        navigate("/restaurants/" + restaurantId);
+        navigate("/restaurants");
     };
 
     return (
         <div className="restaurant-create-container">
             <Navbar />
             <div className="restaurant-create-content">
-                <h2>Add your restaurant</h2>
+                <h2>Update your restaurant</h2>
                 <div className="restaurant-create-info-container">
                     <div className="restaurant-create-input restaurant-create-item restaurant-create-name">
                         <div className="info-icon">
@@ -76,8 +84,8 @@ export default function RestaurantCreate() {
                         </div>
                     </div>
 
-                    <button type="submit" onClick={createRestaurant}>
-                        Create restaurant
+                    <button type="submit" onClick={updateRestaurant}>
+                        Update restaurant
                     </button>
                 </div>
             </div>

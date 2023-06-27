@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RestaurantList from "./pages/restaurant-list";
+import RestaurantListAdmin from "./pages/restaurant-list-admin";
 import RestaurantCreate from "./pages/restaurant-create";
+import RestaurantUpdate from "./pages/restaurant-update";
 import RestaurantSearch from "./pages/restaurant-search";
 import RestaurantDetail from "./pages/restaurant-detail";
 import Register from "./pages/register-form";
@@ -14,11 +16,23 @@ import ContulMeu from "./pages/contul-meu";
 import CosulMeu from "./pages/cosul-meu";
 import ComandaPlasata from "./pages/comanda-plasata";
 import ComenzileMele from "./pages/comenzile-mele";
+import ComenzileDisponibile from "./pages/comenzile-disponibile";
+import ComenziOperator from "./pages/comenzi-operator";
+import MyRestaurant from "./pages/my-restaurant";
+import CustomerUpdate from "./pages/customer-update";
 
 const router = createBrowserRouter([
     {
         path: "/restaurants",
         element: <RestaurantList />,
+    },
+    {
+        path: "/myRestaurant",
+        element: <MyRestaurant />,
+    },
+    {
+        path: "/restaurants/admin",
+        element: <RestaurantListAdmin />,
     },
     {
         path: "/restaurants/search",
@@ -34,7 +48,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/restaurants/update/:id",
-        element: <RestaurantModify />,
+        element: <RestaurantUpdate />,
     },
     {
         path: "/register",
@@ -56,13 +70,17 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
     },
-    {
-        path: "/restaurants/:id/:menuItemId",
-        element: <MenuItem />,
-    },
+    // {
+    //     path: "/restaurants/:id/:menuItemId",
+    //     element: <MenuItem />,
+    // },
     {
         path: "/contulMeu",
         element: <ContulMeu />,
+    },
+    {
+        path: "/contulMeu/update",
+        element: <CustomerUpdate />,
     },
     {
         path: "/cos",
@@ -75,6 +93,14 @@ const router = createBrowserRouter([
     {
         path: "/comenzileMele",
         element: <ComenzileMele />,
+    },
+    {
+        path: "/comenzileDisponibile",
+        element: <ComenzileDisponibile />,
+    },
+    {
+        path: "/comenziOperator",
+        element: <ComenziOperator />,
     },
 ]);
 

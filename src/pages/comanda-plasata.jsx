@@ -1,6 +1,6 @@
 import "../style/comanda-plasata.css";
 import { BsCheckCircle } from "react-icons/bs";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar-customer";
 
 export default function ComandaPlasata() {
     return (

@@ -42,7 +42,7 @@
     width: 40%;
     height: 8rem;
     position: absolute;
-    bottom: 15rem;
+    top: 20rem;
     border-radius: 1rem;
     display: flex;
     justify-content: center;
@@ -87,6 +87,9 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    width: 100%;
+    margin-bottom: 5rem;
+    position: relative;
 }
 
 .restaurant-food-card {
@@ -96,6 +99,8 @@
     display: flex;
     border-radius: 0.5rem;
     font-weight: light;
+    padding: 1rem;
+    cursor: pointer;
 }
 
 .restaurant-food-card p {
@@ -113,6 +118,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
 }
 
 .restaurant-food-card-price {
@@ -126,12 +132,71 @@
     text-align: justify;
 }
 
+.modal-inset {
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    left: -14rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .menuItemModal {
-    position: fixed;
-    top: 0;
-    right: 0;
+    position: absolute;
     width: 50vw;
-    background-color: #fff;
+    background-color: lightcoral;
     padding: 20px;
     z-index: 1;
+}
+
+.review-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 1rem 2rem;
+    border-radius: 16px;
+}
+
+.review-container textarea {
+    width: 15rem;
+    height: 6rem;
+}
+
+.review-title {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.cart-price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.cart-price button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.rating-container {
+    width: 75%;
+    margin-top: 2rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.rating-card {
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    border-radius: 16px;
+    padding: 0.75rem;
+    margin-top: 1rem;
 }
