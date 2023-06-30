@@ -26,7 +26,7 @@ const RestaurantDetail = () => {
     const { id } = useParams();
     const { addToCart } = useContext(CartContext);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const role = localStorage.getItem("role");
 
@@ -84,7 +84,13 @@ const RestaurantDetail = () => {
                             <p className="restaurant-detail-name">
                                 {restaurant.name}
                             </p>
-                            <button onClick={() => navigate('/restaurants/' + id + '/addMenuItem')}>
+                            <button
+                                onClick={() =>
+                                    navigate(
+                                        "/restaurants/" + id + "/addMenuItem"
+                                    )
+                                }
+                            >
                                 Adauga menu item
                             </button>
                             <button onClick={() => handleSendDeleteRequest()}>
