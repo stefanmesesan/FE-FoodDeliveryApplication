@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import * as client from "../clients/restaurant";
+import { useNavigate } from "react-router-dom";
 import "../style/restaurant-list.css";
 import "../style/global.css";
 import loading from "../assets/loading.gif";
@@ -10,14 +11,21 @@ import { VscSettings } from "react-icons/vsc";
 
 const MyRestaurant = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [restaurants, setRestaurants] = useState([]);
+    const [restaurant, setRestaurant] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLoading(true);
-        client.getMyRestaurant().then((response) => {
-            setRestaurants(response.data);
-            setIsLoading(false);
-        });
+        client
+            .getMyRestaurant()
+            .then((response) => {
+                setRestaurant(response.data);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                navigate("/restaurants/create");
+            });
     }, []);
 
     return (
@@ -34,34 +42,28 @@ const MyRestaurant = () => {
                         <img src={loading} alt="Loading..." />
                     ) : (
                         <div className="restaurant-cards">
-                            {restaurants.map((restaurant) => (
-                                <li key={restaurant.id}>
-                                    <div className="restaurant-card">
+                            <div>
+                                <div className="restaurant-card">
+                                    <a
+                                        href={`/restaurants/${restaurant?.id}`}
+                                        className="restaurant-card-image"
+                                    >
+                                        <img src={defaultImage} alt="image" />
+                                    </a>
+                                    <div className="restaurant-card-title-rating">
                                         <a
-                                            href={`/restaurants/${restaurant.id}`}
-                                            className="restaurant-card-image"
+                                            href={`/restaurants/${restaurant?.id}`}
                                         >
-                                            <img
-                                                src={defaultImage}
-                                                alt="image"
-                                            />
-                                        </a>
-                                        <div className="restaurant-card-title-rating">
-                                            <a
-                                                href={`/restaurants/${restaurant.id}`}
-                                            >
-                                                <p className="restaurant-name">
-                                                    {restaurant.name}
-                                                </p>
-                                            </a>
-                                            <p>
-                                                {restaurant.rating}{" "}
-                                                <AiFillStar />
+                                            <p className="restaurant-name">
+                                                {restaurant?.name}
                                             </p>
-                                        </div>
+                                        </a>
+                                        <p>
+                                            {restaurant?.rating} <AiFillStar />
+                                        </p>
                                     </div>
-                                </li>
-                            ))}
+                                </div>
+                            </div>
                         </div>
                     )}
                 </div>

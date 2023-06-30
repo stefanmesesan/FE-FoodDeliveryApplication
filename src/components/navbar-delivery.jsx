@@ -9,7 +9,9 @@ export default function NavbarDelivery() {
         <div className="restaurant-list-nav-bar">
             <div className="restaurant-list-nav-bar-center">
                 <div className="restaurant-list-nav-bar-left">
-                    <Logo />
+                    <div className="logo">
+                        <h1 className="nav-bar-logo">FUUD|EP</h1>
+                    </div>
                 </div>
                 <div className="restaurant-list-nav-bar-right">
                     <a href={"/comenzileMele"}>

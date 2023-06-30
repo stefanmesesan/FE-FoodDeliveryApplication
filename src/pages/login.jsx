@@ -30,7 +30,7 @@ export default function Login() {
                 else if (role === "RESTAURANT_OPERATOR")
                     navigate("/restaurants/myRestaurant");
                 else if (role === "DELIVERY_GUY")
-                    navigate("/comenzi/comenziDisponibile");
+                    navigate("/comenzileDisponibile");
                 else navigate("/restaurants");
             });
     };
@@ -55,6 +55,9 @@ export default function Login() {
                                 placeholder="********"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                        </div>
+                        <div>
+                            <a href="/register"> Nu ai cont? Inregistreaza-te </a>
                         </div>
                         <div className="role-select role-select-register">
                             <button onClick={handleLogin} type="submit">

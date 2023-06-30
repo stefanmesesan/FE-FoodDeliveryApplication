@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { CartContextProvider } from "./contexts/cart";
 import RestaurantList from "./pages/restaurant-list";
 import RestaurantListAdmin from "./pages/restaurant-list-admin";
 import RestaurantCreate from "./pages/restaurant-create";
@@ -20,14 +21,19 @@ import ComenzileDisponibile from "./pages/comenzile-disponibile";
 import ComenziOperator from "./pages/comenzi-operator";
 import MyRestaurant from "./pages/my-restaurant";
 import CustomerUpdate from "./pages/customer-update";
+import MenuItemCreate from "./pages/menu-item-create";
 
 const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Login />,
+    },
     {
         path: "/restaurants",
         element: <RestaurantList />,
     },
     {
-        path: "/myRestaurant",
+        path: "/restaurants/myRestaurant",
         element: <MyRestaurant />,
     },
     {
@@ -75,6 +81,10 @@ const router = createBrowserRouter([
     //     element: <MenuItem />,
     // },
     {
+        path: "/restaurants/:id/addMenuItem",
+        element: <MenuItemCreate />,
+    },
+    {
         path: "/contulMeu",
         element: <ContulMeu />,
     },
@@ -106,6 +116,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <CartContextProvider>
+            <RouterProvider router={router} />
+        </CartContextProvider>
     </React.StrictMode>
 );

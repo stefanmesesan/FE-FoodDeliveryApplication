@@ -33,3 +33,13 @@ export const getAll = () => {
       }
     });
   };
+
+  export const getCurrent = () => {
+    return axios.get(BASE_URL + "/users/myAccount", {
+      headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+  }
+
+  

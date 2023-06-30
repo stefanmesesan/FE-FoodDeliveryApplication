@@ -37,7 +37,7 @@ export default function RestaurantUpdate() {
             phoneNumber,
         });
 
-        navigate("/restaurants");
+        navigate("/restaurants/myRestaurant");
     };
 
     return (

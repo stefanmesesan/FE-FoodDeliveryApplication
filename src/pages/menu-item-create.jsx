@@ -1,44 +1,42 @@
 import "../style/restaurant-create.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 import { AiTwotonePhone } from "react-icons/ai";
 import * as menuItem from "../clients/menu-item";
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar-admin";
 
 export default function MenuItemCreate() {
+    const { id: restaurantId } = useParams();
+
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
     const [spicy, setSpicy] = useState(false);
-    const [vegan, setVegan] = useState(false);
     const [vegetarian, setVegetarian] = useState(false);
+    const [vegan, setVegan] = useState(false);
+
     const navigate = useNavigate();
 
     const emptyFields = async () => {
         if (
             name.trim() === "" ||
             description.trim() === "" ||
-            price.trim() === "" ||
-            spicy.trim() === "" ||
-            vegan.trim() === "" ||
-            vegetarian.trim() === ""
+            price.trim() === ""
         ) {
             alert("Please fill in all fields before submitting.");
             return;
         }
-        const response = await menuItem.create({
+        await menuItem.create({
             name,
             description,
             price,
-            spicy,
-            vegan,
-            vegetarian,
+            restaurantId
         });
-        const menuItemId = response.data.id;
 
-        navigate("/menuItems/" + menuItemId);
+        alert(name + ' a fost creat.')
+        navigate("/restaurants/" + restaurantId);
     };
 
     return (

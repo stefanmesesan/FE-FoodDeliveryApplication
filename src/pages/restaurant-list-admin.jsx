@@ -35,7 +35,6 @@ const RestaurantList = () => {
             })
             .catch((error) => {
                 console.error("Error deleting restaurant:", error);
-                // Tratați eroarea în mod corespunzător
                 setIsLoading(false);
             });
     };

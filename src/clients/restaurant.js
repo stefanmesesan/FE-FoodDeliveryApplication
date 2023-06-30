@@ -58,6 +58,14 @@ export const deleteRestaurant = (id) => {
   });
 }
 
+export const sendDeleteRequest = () => {
+  return axios.post(BASE_URL + "/restaurants/deleteRequest", {}, {
+    headers: {
+    'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+    }
+  });
+}
+
 export const updateRestaurant = (id, newRestaurant) => {
   return axios.put(BASE_URL + "/restaurants/" + id, newRestaurant, {
     headers: {

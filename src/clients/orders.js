@@ -26,6 +26,15 @@ export const getAll = () => {
     });
   };
 
+  export const getOrdersToDeliver = () => {
+    return axios.get(BASE_URL + "/orders/ordersToDeliver",  {
+      headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+  };
+
+
   export const getById = (id) => {
     return axios.get(BASE_URL + "/orders/" + id, {
       headers: {
@@ -50,10 +59,18 @@ export const getAll = () => {
     });
   };
   
-  export const updateOrder = (id) => {
-    return axios.put(BASE_URL + "/users/" + id, {
+  export const pickupOrder = (id) => {
+    return axios.put(BASE_URL + "/orders/pickUpOrder/" + id, {}, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
         }
   });
-}
+  }
+
+  export const deliverOrder = (id) => {
+    return axios.put(BASE_URL + "/orders/deliverOrder" + id, {}, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
+  });
+  }

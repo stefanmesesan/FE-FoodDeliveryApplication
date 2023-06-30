@@ -1,21 +1,44 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style/cos.css";
 import { MdDelete } from "react-icons/md";
 import Navbar from "../components/navbar-customer";
 import Home from "../components/home";
 import Logo from "../components/logo";
+import * as orderClient from "../clients/order";
+import { CartContext } from "../contexts/cart";
 
 export default function Cos() {
-    const [counter, setCounter] = useState(1);
+    const {
+        cartItems,
+        increaseQuantity,
+        decreaseQuantity,
+        deleteFromCart,
+        clearCart,
+        totalPrice,
+    } = useContext(CartContext);
 
-    function increaseQuantity() {
-        setCounter((counter) => counter + 1);
-    }
-    function decreaseQuantity() {
-        if (counter > 1) {
-            setCounter((counter) => counter - 1);
+    const navigate = useNavigate();
+
+    const placeOrder = () => {
+        if (cartItems.length == 0) {
+            alert("Cart is empty.");
+            return;
         }
-    }
+
+        const menuItemIds = cartItems.map((cartItem) => cartItem.menuItem.id);
+        const quantities = cartItems.map((cartItem) => cartItem.quantity);
+
+        const restaurantId = cartItems[0].menuItem.restaurantId;
+
+        orderClient
+            .placeOrder(restaurantId, menuItemIds, quantities)
+            .then(() => {
+                clearCart();
+                navigate("/comandaPlasata");
+            })
+            .catch((error) => alert(error));
+    };
 
     return (
         <div className="cos-container">
@@ -27,57 +50,75 @@ export default function Cos() {
                     <h2>Produsele tale</h2>
                 </div>
                 <div className="items-container">
-                    <div className="items-content">
-                        <div className="item">
-                            <p className="item-text">
-                                Lorem ipsum dolor sit amet consectetur,
-                                adipisicing elit. Impasd fas dfas dfas dfasd
-                                fasd fsad fasd fedit minima debiasd fasd fasdf
-                                asdf asf asdftis architecfedit minima debiasd
-                                fasd fasdf asdf asf asdftis architecfedit minima
-                                debiasd fasd fasdf asdf asf asdftis architecto
-                                qusimus commodi. Nulla, qui expedita!
-                            </p>
+                    {cartItems.map((cartItem) => (
+                        <div
+                            className="items-content"
+                            key={cartItem.menuItem.id}
+                        >
+                            <div className="item">
+                                <p className="item-text">
+                                    {cartItem.menuItem.name}
+                                </p>
 
-                            <div className="quantity-price-remove">
-                                <div className="quantity-price">
-                                    <div className="quantity-container">
-                                        <div
-                                            onClick={decreaseQuantity}
-                                            className="quantity-btn"
-                                        >
-                                            -
+                                <p className="item-text">
+                                    {cartItem.menuItem.description}
+                                </p>
+
+                                <div className="quantity-price-remove">
+                                    <div className="quantity-price">
+                                        <div className="quantity-container">
+                                            <div
+                                                onClick={() =>
+                                                    decreaseQuantity(
+                                                        cartItem.menuItem.id
+                                                    )
+                                                }
+                                                className="quantity-btn"
+                                            >
+                                                -
+                                            </div>
+                                            <div>{cartItem.quantity}</div>
+                                            <div
+                                                onClick={() =>
+                                                    increaseQuantity(
+                                                        cartItem.menuItem.id
+                                                    )
+                                                }
+                                                className="quantity-btn"
+                                            >
+                                                +
+                                            </div>
                                         </div>
-                                        <div>{counter}</div>
-                                        <div
-                                            onClick={increaseQuantity}
-                                            className="quantity-btn"
-                                        >
-                                            +
+                                        <div className="price">
+                                            <p>{cartItem.menuItem.price}</p>
+                                            <p>Lei</p>
                                         </div>
                                     </div>
-                                    <div className="price">
-                                        <p>32 </p>
-                                        <p>Lei</p>
-                                    </div>
+                                    <MdDelete
+                                        className="remove-item"
+                                        onClick={() =>
+                                            deleteFromCart(cartItem.menuItem.id)
+                                        }
+                                    />
                                 </div>
-                                <MdDelete className="remove-item" />
                             </div>
                         </div>
-                    </div>
+                    ))}
+
                     <div className="cos-info">
                         <div className="total-price">
                             <p>Total comanda:</p>
                             <div className="price">
-                                <p>200</p>
+                                <p>{Math.round(totalPrice * 100) / 100}</p>
                                 <p>Lei</p>
                             </div>
                         </div>
-                        <a href="/comandaPlasata">
-                            <button className="cart-btn">
-                                Trimite comanda
-                            </button>
-                        </a>
+                        <button
+                            className="cart-btn"
+                            onClick={() => placeOrder()}
+                        >
+                            Trimite comanda
+                        </button>
                     </div>
                 </div>
             </div>

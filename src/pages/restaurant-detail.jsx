@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import * as restaurantClient from "../clients/restaurant";
 import * as reviewClient from "../clients/review";
 import * as menuItemClient from "../clients/menu-item";
+import { CartContext } from "../contexts/cart";
 import Navbar from "../components/navbar-customer";
 import "../style/restaurant-detail.css";
 import loading from "../assets/loading.gif";
@@ -23,6 +24,11 @@ const RestaurantDetail = () => {
     const [reviewComment, setReviewComment] = useState("");
 
     const { id } = useParams();
+    const { addToCart } = useContext(CartContext);
+
+    const navigate = useNavigate()
+
+    const role = localStorage.getItem("role");
 
     useEffect(() => {
         setIsLoading(true);
@@ -51,6 +57,20 @@ const RestaurantDetail = () => {
         }
     };
 
+    const handleSendDeleteRequest = () => {
+        restaurantClient.sendDeleteRequest().then(() => {
+            alert("Cererea de stergere a fost trimisa.");
+        });
+    };
+
+    const deleteMenuItem = (menuItemId) => {
+        menuItemClient.deleteMenuItem(menuItemId).then(() => {
+            menuItemClient.getByRestaurantId(id).then((response) => {
+                setMenuItems(response.data);
+            });
+        });
+    };
+
     return (
         <div className="restaurant-detail-main-container">
             <Navbar />
@@ -64,6 +84,12 @@ const RestaurantDetail = () => {
                             <p className="restaurant-detail-name">
                                 {restaurant.name}
                             </p>
+                            <button onClick={() => navigate('/restaurants/' + id + '/addMenuItem')}>
+                                Adauga menu item
+                            </button>
+                            <button onClick={() => handleSendDeleteRequest()}>
+                                Trimite cerere de stergere
+                            </button>
                             <div className="restaurant-contact">
                                 <p>
                                     <GrMap />
@@ -100,9 +126,39 @@ const RestaurantDetail = () => {
                                                 {menuItem.description}
                                             </p>
                                             <div className="cart-price">
-                                                <button>
-                                                    <IoCartOutline />
-                                                </button>
+                                                {role === "CUSTOMER" && (
+                                                    <button
+                                                        onClick={(event) => {
+                                                            event.stopPropagation();
+                                                            addToCart(menuItem);
+                                                            alert(
+                                                                menuItem.name +
+                                                                    " was added to cart."
+                                                            );
+                                                        }}
+                                                    >
+                                                        <IoCartOutline />
+                                                    </button>
+                                                )}
+
+                                                {role ===
+                                                    "RESTAURANT_OPERATOR" && (
+                                                    <button
+                                                        onClick={(event) => {
+                                                            event.stopPropagation();
+                                                            deleteMenuItem(
+                                                                menuItem.id
+                                                            );
+                                                            alert(
+                                                                menuItem.name +
+                                                                    " was deleted."
+                                                            );
+                                                        }}
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                )}
+
                                                 <p className="restaurant-food-card-price">
                                                     {menuItem.price} Lei
                                                 </p>
@@ -149,8 +205,8 @@ const RestaurantDetail = () => {
 
             <div className="rating-container">
                 {reviews.map((review) => (
-                    <div className="rating-card">
-                        <div key={review.id}>
+                    <div className="rating-card" key={review.id}>
+                        <div>
                             <p>Rating: {review.rating}</p>
                             <p>Comment: {review.comment}</p>
                         </div>
